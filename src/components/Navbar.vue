@@ -11,25 +11,21 @@
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/about">Movies</router-link>
+            <router-link class="nav-link" to="/movies">Movies</router-link>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="/login" to="Login" >login</a></li>
+              <li><a class="dropdown-item" href="/signup" to="Signup">register</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="/forgot-password" to="Forgot-Password">forgot Password</a></li>
             </ul>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+    </div>
     </div>
   </nav>
 </template>
@@ -38,8 +34,26 @@
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Navbar',
-  components: {}
+  components: {},
 
+  data () {
+    return {
+      movies: []
+    }
+  },
+  mounted () {
+    const endpoint = ('http://localhost:8080/api/v1/movies')
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    }
+    fetch(endpoint, requestOptions)
+      .then(response => response.json())
+      .then(result => result.forEach(movie => {
+        this.movies.push(movie)
+      }))
+      .catch(error => console.log('error', error))
+  }
 }
 </script>
 

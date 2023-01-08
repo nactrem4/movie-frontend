@@ -1,24 +1,33 @@
 <template>
   <navbar></navbar>
+  <searchbar></searchbar>
   <karusel></karusel>
   <router-view></router-view>
 </template>
 
 <script>
+import Searchbar from '@/components/Searchbar'
 import Navbar from '@/components/Navbar'
 export default {
   name: 'App',
-  components: { Navbar }
+  components: { Navbar, Searchbar }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #3374FF;
+  color: black !important;
+  background: lightcyan !important;
+  width:  100%;
+  height: 100%;
+}
+
+.card {
+  --bs-card-bg: #0000 !important;
 }
 
 nav {
